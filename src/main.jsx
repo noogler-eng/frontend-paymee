@@ -1,11 +1,14 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
 import { RecoilRoot } from "recoil";
-import './index.css'
+import { NextUIProvider } from "@nextui-org/react";
+import "./index.css";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <RecoilRoot>
-    <App />
-  </RecoilRoot>
-)
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <NextUIProvider>
+    <RecoilRoot>
+      <App />
+    </RecoilRoot>
+  </NextUIProvider>
+);

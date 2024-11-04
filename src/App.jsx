@@ -1,20 +1,20 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Signup from "../pages/Signup";
 import Signin from "../pages/Signin";
 import Dashboard from "../pages/Dashboard";
 import Main from "../pages/Main";
 import Transaction from "../pages/Transaction";
 import Transfer from "../pages/Transfer";
-import Navbar from "../components/Navbar";
-import { useRecoilState } from "recoil"
+import { useRecoilState } from "recoil";
 import { userAtom } from "../store/atoms/user_atom";
-import axios from "axios";
 import { useEffect } from "react";
+import axios from "axios";
 
 export default function App() {
-
   const [user, setUser] = useRecoilState(userAtom);
 
+  // setting up the user to recoil
+  // recoil is subsitute of api-context
+  // token = bearer + jsonwebtoken
   useEffect(() => {
     axios
       .get("https://backend-paymee.onrender.com/api/app/get-user", {
@@ -23,13 +23,13 @@ export default function App() {
         },
       })
       .then((data) => {
-        console.log(data);
         setUser({
           firstname: data.data.msg.firstname,
           lastname: data.data.msg.lastname,
+          imageUrl: data.data.msg.imageUrl,
           email: data.data.msg.email,
-          user_id: data.data.msg._id,
-        })
+          userId: data.data.msg._id,
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -40,7 +40,6 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path={"/"} element={<Main />} />
-        <Route path={"/sign-in"} element={<Signin />} />
         <Route path={"/dashboard"} element={<Dashboard />} />
         <Route path={"/dashboard/transfer"} element={<Transfer />} />
         <Route path={"/dashboard/transactions"} element={<Transaction />} />

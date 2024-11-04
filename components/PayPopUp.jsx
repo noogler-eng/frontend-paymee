@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { clsx } from "clsx";
-import Avtaar from "./Avtaar";
 import { useRecoilValue } from "recoil";
 import { userAtom } from "../store/atoms/user_atom";
+import {Avatar} from "@nextui-org/react";
 import axios from "axios";
 
 export default function PayPopUp({isOpen, setIsOpen, recepient}){
@@ -38,7 +38,7 @@ export default function PayPopUp({isOpen, setIsOpen, recepient}){
         </div>
         <div className="flex flex-col justify-center items-center justify-between gap-2">
             <div className="flex gap-1 items-center justify-center"> 
-                <Avtaar firstName={user.firstname} lastName={user.lastname}/> <span>{"->"}</span> <Avtaar firstName={recepient.firstname} lastName={recepient.lastname}/>
+            <Avatar isBordered color="default" src={user?.imageUrl} /> <span>{"->"}</span> <Avatar isBordered color="default" src={recepient?.imageUrl} />
             </div>
             <p className="text-sm">payment to: {recepient.email}</p>
             <div className="flex items-center gap-1">
