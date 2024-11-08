@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Signin from "../pages/Signin";
-import Dashboard from "../pages/Dashboard";
-import Main from "../pages/Main";
-import Transaction from "../pages/Transaction";
-import Transfer from "../pages/Transfer";
+import Signin from "./pages/Signin";
+import Dashboard from "./pages/Dashboard";
+import Main from "./pages/Main";
+import Transaction from "./pages/Transaction";
+import Transfer from "./pages/Transfer";
 import { useRecoilState } from "recoil";
 import { userAtom } from "../store/atoms/user_atom";
 import { useEffect } from "react";

@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { MoveUpRight } from "lucide-react";
+import { MoveDownLeft } from "lucide-react";
 import axios from "axios";
 
 export default function Transactions() {
@@ -43,11 +45,11 @@ export default function Transactions() {
   }, []);
 
   return (
-    <div>
-      <div className="mt-16">
-        <div class="mx-auto w-full max-w-screen-xl px-2.5 lg:px-20 grid gap-y-4 divide-x divide-gray-200 md:grid-cols-3 md:gap-y-0">
+    <div className="w-full flex flex-col items-center gap-5 mt-16">
+      <div className="w-1/2">
+        <div class="w-full flex justify-between">
           <div class="flex flex-col items-center justify-center space-y-2">
-            <p class="text-2xl font-bold md:text-2xl">
+            <p class="text-4xl font-bold">
               {sendTransaction.length + recTransaction.length}
             </p>
             <p class="font-semibold uppercase text-gray-500 md:text-sm">
@@ -55,28 +57,24 @@ export default function Transactions() {
             </p>
           </div>
           <div class="flex flex-col items-center justify-center space-y-2">
-            <p class="text-2xl font-bold md:text-2xl">
-              Rs. {getValue(recTransaction)}
-            </p>
+            <p class="text-4xl font-bold">{getValue(recTransaction)}</p>
             <p class="font-semibold uppercase text-gray-500 md:text-sm">
               Amount Received
             </p>
           </div>
           <div class="flex flex-col items-center justify-center space-y-2">
-            <p class="text-2xl font-bold md:text-2xl">
-              Rs. {getValue(sendTransaction)}
-            </p>
+            <p class="text-4xl font-bold">{getValue(sendTransaction)}</p>
             <p class="font-semibold uppercase text-gray-500 md:text-sm">
               Amount Sent
             </p>
           </div>
         </div>
       </div>
-      <div className="mt-16">
-        <h2 className="text-center bg-gradient-to-r from-black to-black bg-clip-text text-transparent text-2xl font-extrabold">
-          Sent TXN'S
+      <div className="mt-16 w-full flex flex-col gap-8 items-center">
+        <h2 className="text-center text-2xl font-semibold flex gap-2">
+          Sent TXN'S <MoveUpRight size={30} className="font-extrabold" />
         </h2>
-        <div className="flex flex-col items-center my-4 gap-2">
+        <div className="flex flex-col items-center gap-2">
           {sendTransaction.map((transaction) => {
             return (
               <div className="flex flex p-2 border-2 border-black border rounded-xl w-4/6 justify-between items-center px-4">
@@ -93,9 +91,9 @@ export default function Transactions() {
             );
           })}
         </div>
-        <div className="my-16">
-          <h2 className="text-center bg-gradient-to-r from-black to-black bg-clip-text text-transparent text-2xl font-extrabold">
-            Rec TXN'S
+        <div className="w-full flex flex-col gap-8 items-center">
+          <h2 className="text-center text-2xl font-semibold flex gap-2">
+            Rec TXN'S <MoveDownLeft size={30} className="font-extrabold" />
           </h2>
           <div className="flex flex-col items-center my-4 gap-2">
             {recTransaction.map((transaction) => {

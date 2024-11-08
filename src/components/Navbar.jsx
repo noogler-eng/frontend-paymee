@@ -1,4 +1,4 @@
-import { userAtom } from "../store/atoms/user_atom";
+import { userAtom } from "../../store/atoms/user_atom";
 import { useRecoilValue } from "recoil";
 import { useNavigate } from "react-router-dom";
 import { Avatar } from "@nextui-org/react";

@@ -8,22 +8,18 @@ import {
   Button,
 } from "@nextui-org/react";
 import { useRecoilValue } from "recoil";
-import { userAtom } from "../store/atoms/user_atom";
-import axios from "axios";
+import { userAtom } from "../../store/atoms/user_atom";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-
+import axios from "axios";
 
 export default function UserCard() {
-  const [isFollowed, setIsFollowed] = React.useState(false);
   const [balance, setBalance] = useState(0);
   const user = useRecoilValue(userAtom);
   const navigate = useNavigate();
 
   // function to get the balance of current user
   function handelBalance() {
-    if (!user?.userId) return;
-
     axios
       .get(
         "https://backend-paymee.onrender.com/api/app/balance",
@@ -45,6 +41,7 @@ export default function UserCard() {
   }
 
   useEffect(() => {
+    if (!user) navigate("/");
     handelBalance();
   }, []);
 
@@ -63,15 +60,11 @@ export default function UserCard() {
           </div>
         </div>
         <Button
-          className={
-            isFollowed
-              ? "bg-transparent text-foreground border-default-200"
-              : ""
-          }
+          className="bg-transparent text-foreground border-default-200"
           color="primary"
           radius="full"
           size="sm"
-          variant={isFollowed ? "bordered" : "solid"}
+          variant="bordered"
           onPress={() => navigate("/dashboard/transfer")}
         >
           pay now
@@ -79,7 +72,7 @@ export default function UserCard() {
       </CardHeader>
       <CardBody className="px-3 py-0 text-small text-default-400">
         <p>Balance: {balance}</p>
-        <p>userId: {user.userId}</p>
+        <p>userId: {user?.userId}</p>
         <span className="pt-2">
           #PayWithPayee
           <span className="py-2" aria-label="computer" role="img">

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Navbar from "../components/Navbar";
-import LinkTag from "../components/LinkTag";
-import User from "../components/User";
+import Navbar from "../../components/Navbar";
+import LinkTag from "../../components/LinkTag";
+import User from "../../components/User";
 
 export default function Transfer() {
   const [users, serUsers] = useState([]);

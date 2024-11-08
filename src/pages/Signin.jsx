@@ -38,7 +38,10 @@ export default function Signin({ setIsSignUp, isSignUp }) {
       <h1 className="bg-gradient-to-r from-black to-white bg-clip-text text-transparent text-5xl font-extrabold ">
         sign-in
       </h1>
-      <form className="flex flex-col justify-center items-center gap-2 w-1/2" onSubmit={handelSignIn}>
+      <form
+        className="flex flex-col justify-center items-center gap-2 w-1/2"
+        onSubmit={handelSignIn}
+      >
         <Input
           type="email"
           variant={"flat"}

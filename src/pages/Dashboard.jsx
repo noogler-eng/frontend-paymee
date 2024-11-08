@@ -1,25 +1,26 @@
 import { useRecoilValue } from "recoil";
-import { userAtom } from "../../store/atoms/user_atom";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import Navbar from "../../components/Navbar";
-import LinkTag from "../../components/LinkTag";
-import UserCard from "../../components/Card";
-import Transactions from "../../components/Transactions";
+import { useEffect } from "react";
+import Navbar from "../components/Navbar";
+import LinkTag from "../components/LinkTag";
+import UserCard from "../components/Card";
+import Transactions from "../components/Transactions";
 import { useNavigate } from "react-router-dom";
+import { userAtom } from "../../store/atoms/user_atom";
 
 export default function Dashboard() {
   const user = useRecoilValue(userAtom);
   const navigate = useNavigate();
 
-  if(!user){
-    navigate('/signin')
-  }
+  useEffect(() => {
+    if (!user) {
+      navigate("/");
+    }
+  }, [user]);
 
   return (
     <div>
       <Navbar />
-      <div className="flex flex-col">
+      <div className="flex flex-col w-full">
         <div className="p-4">
           <h1 className="font-cal leading-[100%] md:!leading-xl text-[40px] tracking-[-0.002em] md:text-[75px] lg:text-[79px] xl:text-[70px] text-shadow-gray !xl:text-[clamp(52px,_7.8vw,_82px)] max-w-full !text-[clamp(52px,_7.45vw,_82px)] lg:max-w-lg">
             <span
@@ -49,7 +50,7 @@ export default function Dashboard() {
           <UserCard />
         </div>
         <div className="w-full flex items-center justify-center">
-          <Transactions/>
+          <Transactions />
         </div>
       </div>
     </div>
