@@ -36,7 +36,7 @@ export default function Main() {
 
   return (
     <div className="flex w-full h-max-screen">
-      <div className="w-1/2 bg-[url('signup.webp')] bg-no-repeat bg-clip-content bg-origin-content bg-center bg-cover overflow-hidden min-h-screen"></div>
+      <div className="w-1/2 bg-[url('signup.jpeg')] bg-no-repeat bg-clip-content bg-origin-content bg-center bg-cover overflow-hidden min-h-screen"></div>
       <div className="w-1/2 flex flex-col min-h-screen">
         <Minibar />
         <div className="flex-grow items-center justify-center">
