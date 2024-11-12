@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useRecoilState } from "recoil";
 import { userAtom } from "../../store/atoms/user_atom";
+import Minibar from "../components/Minibar";
 
 export default function Main() {
   const [isSignUp, setIsSignUp] = useState(true);
@@ -26,7 +27,7 @@ export default function Main() {
           email: data.data.msg.email,
           userId: data.data.msg._id,
         });
-        navigate("/");
+        navigate("/dashboard");
       })
       .catch((error) => {
         console.log(error);
@@ -34,14 +35,17 @@ export default function Main() {
   }, []);
 
   return (
-    <div className="flex w-full bg-custom-bg repeat bg-no-repeat h-screen">
-      <div className="w-1/2"></div>
-      <div className="w-1/2 flex items-center justify-center">
-        {isSignUp ? (
-          <Signup setIsSignUp={setIsSignUp} isSignUp={isSignUp} />
-        ) : (
-          <Signin setIsSignUp={setIsSignUp} isSignUp={isSignUp} />
-        )}
+    <div className="flex w-full h-max-screen">
+      <div className="w-1/2 bg-[url('signup.webp')] bg-no-repeat bg-clip-content bg-origin-content bg-center bg-cover overflow-hidden min-h-screen"></div>
+      <div className="w-1/2 flex flex-col min-h-screen">
+        <Minibar />
+        <div className="flex-grow items-center justify-center">
+          {isSignUp ? (
+            <Signup setIsSignUp={setIsSignUp} isSignUp={isSignUp} />
+          ) : (
+            <Signin setIsSignUp={setIsSignUp} isSignUp={isSignUp} />
+          )}
+        </div>
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ export default function LinkTag({current}) {
   
   return (
     <a
-      className="border-subtle bg-subtle group mb-5 flex w-max items-center gap-x-2 rounded-full border text-sm py-1 px-2 transition-colors hover:bg-black/5 focus-visible:bg-black/10"
+      className="border-subtle bg-subtle group mb-5 flex w-max items-center gap-x-2 rounded-full border text-sm py-1 px-2 transition-colors hover:bg-black/5 focus-visible:bg-black/10 border-black"
       href={current == "Dashboard"?"/dashboard/transfer":"/dashboard"}
     >
       <span className="-ml-1 flex items-center gap-2 rounded-full px-2 py-1 text-xs font-medium text-white bg-black">

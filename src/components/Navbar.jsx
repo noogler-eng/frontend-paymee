@@ -18,11 +18,11 @@ export default function Navbar() {
 
   return (
     <div className="w-screen flex justify-between items-center p-4 shadow-lg shadow-gray-500/50">
-      <div>
-        <h1 className="bg-gradient-to-r from-black via-purple-600 to-white bg-clip-text text-transparent text-5xl font-extrabold">
-          paymee
-        </h1>
-        <p className="text-sm text-gray-500">A payment transaction app</p>
+      <div className="flex flex-col gap-1">
+        <h1 className="text-5xl font-extrabold">paymee</h1>
+        <p className="text-sm text-gray-500">
+          <i>A payment transaction app</i>
+        </p>
       </div>
       <div className="flex gap-4 justify-center items-center">
         {user ? (

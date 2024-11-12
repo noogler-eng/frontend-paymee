@@ -34,7 +34,7 @@ export default function Signin({ setIsSignUp, isSignUp }) {
   }
 
   return (
-    <div className="w-full flex justify-center items-center flex-col gap-2 w-full">
+    <div className="w-full flex justify-center items-center flex-col gap-3 h-full">
       <h1 className="bg-gradient-to-r from-black to-white bg-clip-text text-transparent text-5xl font-extrabold ">
         sign-in
       </h1>

@@ -46,7 +46,7 @@ export default function UserCard() {
   }, []);
 
   return (
-    <Card className="w-2/6">
+    <Card className="w-2/6 shadow-xl shadow-gray-500/100">
       <CardHeader className="justify-between">
         <div className="flex gap-5">
           <Avatar isBordered radius="full" size="md" src={user?.imageUrl} />
