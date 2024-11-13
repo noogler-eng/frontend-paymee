@@ -10,40 +10,10 @@ import {
 import { useRecoilValue } from "recoil";
 import { userAtom } from "../../store/atoms/user_atom";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import axios from "axios";
 
-export default function UserCard() {
-  const [balance, setBalance] = useState(0);
+export default function UserCard({ balance }) {
   const user = useRecoilValue(userAtom);
   const navigate = useNavigate();
-
-  // function to get the balance of current user
-  function handelBalance() {
-    axios
-      .get(
-        "https://backend-paymee.onrender.com/api/app/balance",
-        {
-          userId: user?.userId,
-        },
-        {
-          headers: {
-            authorization: "bearer " + localStorage.getItem("token"),
-          },
-        }
-      )
-      .then((res) => {
-        setBalance(res.data.balance);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-
-  useEffect(() => {
-    if (!user) navigate("/");
-    handelBalance();
-  }, []);
 
   return (
     <Card className="w-2/6 shadow-xl shadow-gray-500/100">

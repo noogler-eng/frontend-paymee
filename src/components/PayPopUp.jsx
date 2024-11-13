@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { clsx } from "clsx";
 import { useRecoilValue } from "recoil";
 import { Avatar, Button } from "@nextui-org/react";
-import axios from "axios";
 import { userAtom } from "../../store/atoms/user_atom";
+import toast from "react-hot-toast";
+import { clsx } from "clsx";
+import axios from "axios";
 
 export default function PayPopUp({ isOpen, setIsOpen, recepient }) {
   const [amount, setAmount] = useState(0);
@@ -12,9 +13,9 @@ export default function PayPopUp({ isOpen, setIsOpen, recepient }) {
   function handelPay() {
     axios
       .post(
-        "https://backend-paymee.onrender.com/api/app/transfer",
+        `${import.meta.env.VITE_BACKEND_SERVER}/api/app/transfer`,
         {
-          from: user.user_id,
+          from: user.userId,
           to: recepient._id,
           amount: amount,
         },
@@ -24,12 +25,28 @@ export default function PayPopUp({ isOpen, setIsOpen, recepient }) {
           },
         }
       )
-      .then((data) => {
-        console.log(data);
+      .then((res) => {
         setIsOpen(!isOpen);
+        toast.success(res.data.msg, {
+          position: "top-center",
+          duration: 4000,
+          style: {
+            backgroundColor: "#28a745",
+            color: "#fff",
+            fontWeight: "bold",
+          },
+        });
       })
       .catch((error) => {
-        console.log(error);
+        toast.error(error.response.data.msg, {
+          position: "top-center",
+          duration: 4000,
+          style: {
+            backgroundColor: "#dc3545",
+            color: "#fff",
+            fontWeight: "bold",
+          },
+        });
       });
   }
 

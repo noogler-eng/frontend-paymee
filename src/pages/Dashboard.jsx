@@ -1,4 +1,4 @@
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import LinkTag from "../components/LinkTag";
@@ -21,6 +21,7 @@ export default function Dashboard() {
   const [gradient, setGradient] = useState(gradients[0]);
   const [loading, setLoading] = useState(false);
   const user = useRecoilValue(userAtom);
+  const [balance, setBalance] = useState();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,6 +30,24 @@ export default function Dashboard() {
     }
   }, [user]);
 
+  function handleBalance() {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_SERVER}/api/app/balance`, {
+        params: {
+          userId: user?.userId, // Pass userId as a query parameter
+        },
+        headers: {
+          authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((res) => {
+        setBalance(res.data.balance);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   const changeGradient = () => {
     const randomGradient =
       gradients[Math.floor(Math.random() * gradients.length)];
@@ -36,21 +55,19 @@ export default function Dashboard() {
   };
 
   useEffect(() => {
+    handleBalance();
     const interval = setInterval(() => {
       changeGradient();
     }, 5 * 1000);
-
-    // Cleanup the interval on component unmount
     return () => clearInterval(interval);
   }, []);
 
-  // handels the airdrop in this case in beta version
   const handelAirdrop = async () => {
     setLoading(true);
     try {
       axios
         .post(
-          "https://backend-paymee.onrender.com/api/app/airdrop",
+          `${import.meta.env.VITE_BACKEND_SERVER}/api/app/airdrop`,
           {
             userId: user?.userId,
           },
@@ -60,7 +77,9 @@ export default function Dashboard() {
             },
           }
         )
-        .then((res) => {})
+        .then((res) => {
+          handleBalance();
+        })
         .catch((error) => {
           console.log(error);
         });
@@ -93,7 +112,7 @@ export default function Dashboard() {
             Available for sometime only
           </div>
         </div>
-        <div className="p-4">
+        <div className="p-4 w-full">
           <h1 className="font-cal leading-[100%] md:!leading-xl text-[40px] tracking-[-0.002em] md:text-[75px] lg:text-[79px] xl:text-[70px] text-shadow-gray !xl:text-[clamp(52px,_7.8vw,_82px)] max-w-full !text-[clamp(52px,_7.45vw,_82px)] lg:max-w-lg">
             <span
               data-br=":r6:"
@@ -119,12 +138,12 @@ export default function Dashboard() {
           </div>
         </div>
         <div className="w-full flex items-center justify-center w-full">
-          <UserCard />
+          <UserCard balance={balance}/>
         </div>
         <div className="w-full flex items-center justify-center">
           <Transactions />
         </div>
-        <div className="w-full flex flex-col items-center justify-center mb-10">
+        <div className="w-full flex flex-col items-center justify-center my-10">
           <h2 className="text-2xl w-5/6 font-bold text-start">Policies</h2>
           <p className="w-5/6 text-start">
             User data is handled with strict confidentiality in compliance with

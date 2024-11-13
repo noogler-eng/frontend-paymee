@@ -20,7 +20,7 @@ export default function User({ user, current, setCurrent }) {
 
   return (
     <div
-      className="flex items-center rounded-md border border-gray-200 bg-white p-3 shadow-lg w-full flex justify-center gap-4"
+      className="flex items-center rounded-md border border-gray-200 bg-white p-3 shadow-lg w-full flex justify-center gap-4 shadow-xl shadow-gray-500/100"
       style={{ opacity: 1, transform: "none" }}
     >
       <div className="w-4/6 flex items-center justify-center gap-5">

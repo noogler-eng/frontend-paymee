@@ -14,7 +14,7 @@ export default function Main() {
 
   useEffect(() => {
     axios
-      .get("https://backend-paymee.onrender.com/api/app/get-user", {
+      .get(`${import.meta.env.VITE_BACKEND_SERVER}/api/app/get-user`, {
         headers: {
           authorization: "bearer " + localStorage.getItem("token"),
         },
@@ -26,6 +26,7 @@ export default function Main() {
           imageUrl: data.data.msg.imageUrl,
           email: data.data.msg.email,
           userId: data.data.msg._id,
+          balance: 0
         });
         navigate("/dashboard");
       })
@@ -36,7 +37,7 @@ export default function Main() {
 
   return (
     <div className="flex w-full h-max-screen">
-      <div className="w-1/2 bg-[url('signup.jpeg')] bg-no-repeat bg-clip-content bg-origin-content bg-center bg-cover overflow-hidden min-h-screen"></div>
+      <div className="w-1/2 bg-[url('signup.jpg')] bg-no-repeat bg-clip-content bg-origin-content bg-center bg-cover overflow-hidden min-h-screen"></div>
       <div className="w-1/2 flex flex-col min-h-screen">
         <Minibar />
         <div className="flex-grow items-center justify-center">

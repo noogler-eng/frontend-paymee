@@ -29,13 +29,13 @@ export default function Signup({ setIsSignUp, isSignUp }) {
 
     try {
       const response = await axios.post(
-        `https://api.cloudinary.com/v1_1/dx62jn3ic/image/upload`,
+        `${import.meta.env.VITE_CLOUD}`,
         formData
       );
       imageUrl = await response.data.secure_url;
 
       axios
-        .post("https://backend-paymee.onrender.com/api/auth/sign-up", {
+        .post(`${import.meta.env.VITE_BACKEND_SERVER}/api/auth/sign-up`, {
           firstname: firstname,
           lastname: lastname,
           imageUrl: imageUrl,
@@ -131,6 +131,7 @@ export default function Signup({ setIsSignUp, isSignUp }) {
         </button>
         <Toaster />
       </p>
+      <p className="text-red-600"><i>Length of password must be 6 letters</i></p>
     </div>
   );
 }

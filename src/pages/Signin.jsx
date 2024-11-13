@@ -20,7 +20,7 @@ export default function Signin({ setIsSignUp, isSignUp }) {
     }
 
     axios
-      .post("https://backend-paymee.onrender.com/api/auth/sign-in", {
+      .post(`${import.meta.env.VITE_BACKEND_SERVER}/api/auth/sign-in`, {
         email: email,
         password: password,
       })
@@ -72,6 +72,7 @@ export default function Signin({ setIsSignUp, isSignUp }) {
         </button>
         <Toaster />
       </p>
+      <p className="text-red-600"><i>Length of password must be 6 letters</i></p>
     </div>
   );
 }

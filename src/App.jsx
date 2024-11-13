@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Signin from "./pages/Signin";
 import Dashboard from "./pages/Dashboard";
 import Main from "./pages/Main";
 import Transaction from "./pages/Transaction";
@@ -8,6 +7,7 @@ import { useRecoilState } from "recoil";
 import { userAtom } from "../store/atoms/user_atom";
 import { useEffect } from "react";
 import axios from "axios";
+import { Toaster } from "react-hot-toast";
 
 export default function App() {
   const [user, setUser] = useRecoilState(userAtom);
@@ -44,6 +44,7 @@ export default function App() {
         <Route path={"/dashboard/transfer"} element={<Transfer />} />
         <Route path={"/dashboard/transactions"} element={<Transaction />} />
       </Routes>
+      <Toaster />
     </BrowserRouter>
   );
 }

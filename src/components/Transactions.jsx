@@ -11,7 +11,7 @@ export default function Transactions() {
   // it contains both postive and negative transaction
   function handelTransactions() {
     axios
-      .get("https://backend-paymee.onrender.com/api/app/transactions", {
+      .get(`${import.meta.env.VITE_BACKEND_SERVER}/api/app/transactions`, {
         headers: {
           authorization: "bearer " + localStorage.getItem("token"),
         },
@@ -74,10 +74,13 @@ export default function Transactions() {
         <h2 className="text-center text-2xl font-semibold flex gap-2">
           Sent TXN'S <MoveUpRight size={30} className="font-extrabold" />
         </h2>
-        <div className="flex flex-col items-center gap-2">
-          {sendTransaction.map((transaction) => {
+        <div className="flex flex-col items-center gap-2 max-h-96 overflow-y-scroll w-4/6 px-4">
+          {sendTransaction.map((transaction, index) => {
             return (
-              <div className="flex flex p-2 border-2 border-black border rounded-xl w-4/6 justify-between items-center px-4">
+              <div
+                className="flex flex p-2 border-2 border-black border rounded-xl w-full justify-between items-center px-4"
+                key={index}
+              >
                 <div>
                   <div>From: {transaction.from_name}</div>
                   <div>sender_id: {transaction.from}</div>
@@ -95,10 +98,13 @@ export default function Transactions() {
           <h2 className="text-center text-2xl font-semibold flex gap-2">
             Rec TXN'S <MoveDownLeft size={30} className="font-extrabold" />
           </h2>
-          <div className="flex flex-col items-center my-4 gap-2">
-            {recTransaction.map((transaction) => {
+          <div className="flex flex-col items-center my-4 gap-2 w-4/6 max-h-96 overflow-y-scroll px-4">
+            {recTransaction.map((transaction, index) => {
               return (
-                <div className="flex flex p-2 border-2 border-black border rounded-xl w-4/6 justify-between items-center px-4">
+                <div
+                  className="flex flex p-2 border-2 border-black border rounded-xl w-full justify-between items-center px-4"
+                  key={index}
+                >
                   <div>
                     <div>From: {transaction.from_name}</div>
                     <div>sender_id: {transaction.from}</div>
