@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="680px" height="900px" viewBox="0 0 680 900" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group 6</title>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="680" height="900"></rect>
+    </defs>
+    <g id="Onboarding-flow" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="sign-up" transform="translate(-600.000000, 0.000000)">
+            <g id="Group-6" transform="translate(600.000000, 0.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="Rectangle" transform="translate(340.000000, 450.000000) scale(-1, 1) translate(-340.000000, -450.000000) "></g>
+                <rect id="Background" fill="#FFFFFF" mask="url(#mask-2)" x="-600" y="0" width="1280" height="900"></rect>
+                <g id="Group-9" mask="url(#mask-2)">
+                    <g transform="translate(350.895354, 501.603217) rotate(-5.000000) translate(-350.895354, -501.603217) translate(-46.104646, -133.396783)">
+                        <rect id="Rectangle" fill="#FA3C66" opacity="0.0799999982" x="0" y="0" width="250" height="1270"></rect>
+                        <rect id="Rectangle" fill="#FFD155" opacity="0.100000001" x="157" y="0" width="250" height="1270"></rect>
+                        <rect id="Rectangle-Copy-2" fill="#37ABFF" opacity="0.100000001" x="489" y="4.54747351e-13" width="305" height="1270"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
